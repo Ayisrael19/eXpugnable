@@ -1,6 +1,91 @@
-head{
-    background-color: black;
-}
-body{
-    background-color: black;
-}
+body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            color: #4b5563;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-buttons a:hover {
+            color: #2563eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 80px 5%;
+            background: #f8fafc;
+            flex-wrap: wrap;
+            background-image: url(''); /* Replace with your image link */
+            background-size: cover; /* Ensures the image covers the entire background */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents the image from tiling */
+            background-attachment: fixed; /* Keeps the background static while scrolling */
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background: #1e293b;
+            color: white;
+            margin-top: 50px;
+        }
+
+        /* Simple animation for the image */
+        .hero-image img:hover {
+            transform: translateY(-10px);
+            transition: transform 0.4s ease;
+        }
