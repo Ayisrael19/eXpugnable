@@ -6,8 +6,6 @@
   },
   "build": {
     "command": "",
-    "cwd": null,
-    "watch_paths": null
   },
   "env": {
     "production": {
