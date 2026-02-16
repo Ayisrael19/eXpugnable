@@ -1,0 +1,22 @@
+{
+  "name": "expugnable",
+  "main": "src/index.js",
+  "site": {
+    "bucket": "./public"
+  },
+  "build": {
+    "command": "",
+    "cwd": null,
+    "watch_paths": null
+  },
+  "env": {
+    "production": {
+      "routes": [
+        {
+          "pattern": "expugnable.com",
+          "zone_name": "expugnable.com"
+        }
+      ]
+    }
+  }
+}

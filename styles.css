@@ -44,7 +44,7 @@ body {
             padding: 80px 5%;
             background: #f8fafc;
             flex-wrap: wrap;
-            background-image: url(''); /* Replace with your image link */
+            /* background-image: url(''); */ /* Replace with your image link */
             background-size: cover; /* Ensures the image covers the entire background */
             background-position: center; /* Centers the image */
             background-repeat: no-repeat; /* Prevents the image from tiling */
@@ -83,6 +83,30 @@ body {
             color: white;
             margin-top: 50px;
         }
+        .social-container {
+        display: flex;
+        justify-content: center;
+        gap: 25px;           /* Space between logos */
+        padding: 30px 0;
+        }
+
+        .social-container a {
+            color: #4b5563;      /* Subtle grey color */
+            font-size: 1.8rem;   /* Icon size */
+            transition: all 0.3s ease;
+        }
+
+        /* Brand-specific hover colors */
+        .social-container a:hover {
+            transform: translateY(-5px); /* Tiny lift effect */
+        }
+
+        .fa-facebook:hover { color: #1877F2; }
+        .fa-instagram:hover { color: #E4405F; }
+        .fa-x-twitter:hover { color: #000000; }
+        .fa-tiktok:hover { color: #000000; }
+        .fa-discord:hover { color: #5865F2; }
+        .fa-linkedin:hover { color: #0A66C2; }
 
         /* Simple animation for the image */
         .hero-image img:hover {
