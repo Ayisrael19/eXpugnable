@@ -1,5 +1,4 @@
 {
   "name": "expugnable",
-  "type": "javascript",
   "main": "src/index.js"
 }
