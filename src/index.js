@@ -32,9 +32,14 @@ export default {
         return new Response("Signup successful! Welcome to eXpugnable, " + name, { status: 200 });
 
       } catch (err) {
-        return new Response("Database Error: " + err.message, { status: 500 });
+        return new Response("Error: " + err.message, { status: 500 });
       }
     }
+
+    // This is likely what was throwing the 405 because it doesn't like POST
+    return env.ASSETS.fetch(request);
+  
+
 
     // 2. ROUTE: Serve Static Files (HTML/CSS/Images)
     try {
