@@ -2,9 +2,8 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // 1. CATCH THE POST REQUEST FIRST
-    // This intercepts the form before it hits the static assets
-if (request.method === "POST" && (path === "/signup" || path === "/signup.html")) {
+    // TEST: Catch ANY POST request to any path
+    if (request.method === "POST") {
       try {
         const formData = await request.formData();
         const name = formData.get("name");
@@ -12,23 +11,23 @@ if (request.method === "POST" && (path === "/signup" || path === "/signup.html")
         const username = formData.get("username");
         const password = formData.get("password");
 
-        // Use the 'DB' binding exactly as it appears in your wrangler file
+        // If your table name or columns are different, this will throw an error
+        // which we will see in the response instead of a 405.
         await env.DB.prepare(
           "INSERT INTO contacts (full_name, email, username, password) VALUES (?, ?, ?, ?)"
         )
         .bind(name, email, username, password)
         .run();
 
-        return new Response("Signup Successful!", { status: 200 });
+        return new Response("SUCCESS: Data saved to D1!", { status: 200 });
 
       } catch (err) {
-        // If this hits, the binding is likely missing or the table isn't created
-        return new Response("Worker Error: " + err.message, { status: 500 });
+        // If the binding or SQL is wrong, you'll see the REAL error here
+        return new Response("DATABASE ERROR: " + err.message, { status: 500 });
       }
     }
 
-    // 2. SERVE STATIC FILES SECOND
-    // If it's a GET request (like loading the page), this handles it
+    // Normal GET requests (viewing the page) go here
     return env.ASSETS.fetch(request);
   }
 };
