@@ -1,72 +1,34 @@
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const path = url.pathname;
-      
-    if (path === '/signup.html' || path === '/signup') {
-    }
 
-    // 1. ROUTE: Handle the Signup Form Submission
-    if (request.method === "POST" && path === "/signup") {
+    // 1. CATCH THE POST REQUEST FIRST
+    // This intercepts the form before it hits the static assets
+    if (request.method === "POST" && url.pathname === "/signup") {
       try {
         const formData = await request.formData();
         const name = formData.get("name");
         const email = formData.get("email");
         const username = formData.get("username");
         const password = formData.get("password");
-        const confirmPassword = formData.get("confirm-password");
 
-        // Basic validation
-        if (password !== confirmPassword) {
-          return new Response("Error: Passwords do not match.", { status: 400 });
-        }
-
-        // Insert into your Cloudflare D1 Database
-        // Note: In a real app, use bcrypt here to hash the password first!
+        // Use the 'DB' binding exactly as it appears in your wrangler file
         await env.DB.prepare(
           "INSERT INTO contacts (full_name, email, username, password) VALUES (?, ?, ?, ?)"
         )
         .bind(name, email, username, password)
         .run();
 
-        return new Response("Signup successful! Welcome to eXpugnable, " + name, { status: 200 });
+        return new Response("Signup Successful!", { status: 200 });
 
       } catch (err) {
-        return new Response("Error: " + err.message, { status: 500 });
+        // If this hits, the binding is likely missing or the table isn't created
+        return new Response("Worker Error: " + err.message, { status: 500 });
       }
     }
 
-    // This is likely what was throwing the 405 because it doesn't like POST
+    // 2. SERVE STATIC FILES SECOND
+    // If it's a GET request (like loading the page), this handles it
     return env.ASSETS.fetch(request);
-  
-
-
-    // 2. ROUTE: Serve Static Files (HTML/CSS/Images)
-    try {
-      let filePath = path === "/" ? "/index.html" : path;
-      const response = await fetch(`${url.origin}${filePath}`);
-
-      if (response.status === 404) {
-        return new Response("File Not Found", { status: 404 });
-      }
-
-      // Create a new response so we can modify the headers
-      const newResponse = new Response(response.body, response);
-
-      // Explicitly set the type based on the file extension
-      if (path.endsWith(".css")) {
-        newResponse.headers.set("Content-Type", "text/css");
-      } else if (path.endsWith(".html")) {
-        newResponse.headers.set("Content-Type", "text/html");
-      } else if (path.endsWith(".png")) {
-        newResponse.headers.set("Content-Type", "image/png");
-      } else if (path.endsWith(".jpg") || path.endsWith(".jpeg")) {
-        newResponse.headers.set("Content-Type", "image/jpeg");
-      }
-
-      return newResponse;
-    } catch (e) {
-      return new Response("Internal Server Error", { status: 500 });
-    }
   }
 };
