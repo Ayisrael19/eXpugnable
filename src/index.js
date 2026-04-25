@@ -2,8 +2,6 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const path = url.pathname;
-
-    if (path === '/index.html' || path === '/') 
       
     if (path === '/signup.html' || path === '/signup') {
     }
@@ -39,19 +37,29 @@ export default {
     }
 
     // 2. ROUTE: Serve Static Files (HTML/CSS/Images)
-    // This part matches the logic in your image_4fdf2f.png
     try {
       let filePath = path === "/" ? "/index.html" : path;
-      
-      // If you are hosting your files on Cloudflare Pages or a bucket, 
-      // you fetch them from the origin. 
       const response = await fetch(`${url.origin}${filePath}`);
-      
+
       if (response.status === 404) {
         return new Response("File Not Found", { status: 404 });
       }
 
-      return response;
+      // Create a new response so we can modify the headers
+      const newResponse = new Response(response.body, response);
+
+      // Explicitly set the type based on the file extension
+      if (path.endsWith(".css")) {
+        newResponse.headers.set("Content-Type", "text/css");
+      } else if (path.endsWith(".html")) {
+        newResponse.headers.set("Content-Type", "text/html");
+      } else if (path.endsWith(".png")) {
+        newResponse.headers.set("Content-Type", "image/png");
+      } else if (path.endsWith(".jpg") || path.endsWith(".jpeg")) {
+        newResponse.headers.set("Content-Type", "image/jpeg");
+      }
+
+      return newResponse;
     } catch (e) {
       return new Response("Internal Server Error", { status: 500 });
     }
