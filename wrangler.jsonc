@@ -8,9 +8,5 @@
       "database_name": "user_db",
       "database_id": "f85cb6ce-f0ff-4c9f-a9ea-a87002bfe303"
     }
-  ],
-  "assets": {
-    "directory": ".",
-    "binding": "ASSETS"
-  }
+  ]
 }
