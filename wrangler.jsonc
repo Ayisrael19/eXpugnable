@@ -4,10 +4,13 @@
   "compatibility_date": "2026-02-16",
   "d1_databases": [
     {
-      "binding": "DB", // This is the variable name you'll use in your code (env.DB)
-      "database_name": "user_db", // The name you gave it in the dashboard
-      "database_id": "f85cb6ce-f0ff-4c9f-a9ea-a87002bfe303" // Paste your ID here!
+      "binding": "DB",
+      "database_name": "user_db",
+      "database_id": "f85cb6ce-f0ff-4c9f-a9ea-a87002bfe303"
     }
-  ]
-  
+  ],
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS"
+  }
 }
