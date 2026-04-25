@@ -4,7 +4,7 @@ export default {
 
     // 1. CATCH THE POST REQUEST FIRST
     // This intercepts the form before it hits the static assets
-    if (request.method === "POST" && url.pathname === "/signup") {
+if (request.method === "POST" && (path === "/signup" || path === "/signup.html")) {
       try {
         const formData = await request.formData();
         const name = formData.get("name");
