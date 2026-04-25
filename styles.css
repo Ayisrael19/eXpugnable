@@ -1,8 +1,15 @@
-body {
+body, html {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
+            padding: 0;
+            height: 100%;
             line-height: 1.6;
             color: #333;
+        }
+        .main-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
         }
 
         /* Navigation */
@@ -112,4 +119,111 @@ body {
         .hero-image img:hover {
             transform: translateY(-10px);
             transition: transform 0.4s ease;
+        }
+
+
+
+        /* Container holds the whole card in the center of the screen */
+        .signup-container {
+            background-color: white;
+            display: flex;
+            width: 964px;
+            height: 904px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            overflow: hidden;
+            /* Remove 'margin-top' or 'margin-left' if you had them; flex handles it now */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            background: white;
+        }
+
+        /* This is the magic part for centering */
+        .content-area {
+            flex-grow: 1; 
+            display: flex;
+            justify-content: center; /* Horizontal center */
+            align-items: center;     /* Vertical center */
+            background-color: #f8f9fa; /* Light grey background to make card pop */
+        }
+
+        .signup-card {
+            display: flex;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 800px;
+            max-width: 90%;
+            overflow: hidden;
+        }
+
+        /* Left side styling */
+        .form-section {
+            padding: 40px;
+            flex: 1;
+        }
+
+        .form-section h2 {
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .form-section input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .password-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-section button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .form-section button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Right side styling from previous step */
+        .welcome-section {
+            background-color: #fcfdfe; /* Matches the soft blue in the image */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            border-left: 1px solid #f0f0f0;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
         }
